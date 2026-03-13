@@ -24,17 +24,14 @@ Use the sidebar filters to customize your view.
 
 # Load Dataset
 
-try:
-    df = pd.read_csv("dataset/sales.csv")
-    df.columns = df.columns.str.strip()  # remove spaces
-except FileNotFoundError:
-    st.error("❌ Dataset not found! Please make sure 'dataset/sales.csv' exists.")
-    st.stop()
+
+df = pd.read_csv("train.csv")
+df.columns = df.columns.str.strip()  # remove spaces
 
 
 # Sidebar Filters
 
-st.sidebar.header("Filter Options")
+st. sidebar.header("Filter Options")
 regions = st.sidebar.multiselect(
     "Select Region", options=df["Region"].unique(), default=df["Region"].unique()
 )
@@ -120,7 +117,7 @@ st.dataframe(filtered_df, use_container_width=True)
 st.download_button(
     label="⬇ Download Filtered Data as CSV",
     data=filtered_df.to_csv(index=False),
-    file_name='filtered_sales.csv',
+    file_name='filtered train.csv',
     mime='text/csv.'
 )
 
